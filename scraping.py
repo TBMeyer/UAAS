@@ -4,8 +4,6 @@ Created on Tue Nov 19 10:55:09 2019
 
 @author: DavidMeyer
 """
-query = "seo"
-lang = "de"
 def scrape(query, lang):
     import ipywidgets as widgets
     import os
