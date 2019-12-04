@@ -11,8 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-import os
-os.chmod('/home/jovyan/driver/chromedriver', 755)
+
 ''' 
 Visualisierung eines Ladebalkens
 '''
@@ -35,7 +34,10 @@ def prettyOutputName(query,filetype='html'):
 def initBrowser(headless=False):
     if "Windows" in platform.system():
         chrome_path = "driver/chromedriver.exe"
+        chrome_options = Options()
     else:
+        import os
+        os.chmod('/home/jovyan/driver/chromedriver', 755)
         chrome_path = "driver/chromedriver"
         chrome_options = Options()
         chrome_options.add_argument("--disable-dev-shm-usage")
