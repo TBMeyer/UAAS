@@ -37,12 +37,11 @@ def initBrowser(headless=False):
         chrome_path = "driver/chromedriver.exe"
     else:
         chrome_path = "driver/chromedriver"
-    chrome_options = Options()
-   
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-features=NetworkService")
-    if headless:
-        chrome_options.add_argument('headless')
+        chrome_options = Options()
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--disable-features=NetworkService")
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
     return webdriver.Chrome(options=chrome_options,executable_path=chrome_path)
 """
 Search on Google and returns the list of PAA questions in SERP.
