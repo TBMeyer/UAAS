@@ -1,39 +1,16 @@
-usage='''
-❓❔👾 Gquestions CLI Usage ❔❓
-🔍 Usage:
-    gquestions.py query <keyword> (en|es|de) [depth <depth>] [--csv] [--headless]
-    gquestions.py (-h | --help)
-💡 Examples:
-    ▶️  gquestions.py query "flights" en              Search "flights" in English and export in html
-    ▶️  gquestions.py query "flights" en --headless   Search headlessly "flights" in English and export in html
-    ▶️  gquestions.py query "vuelos" es --csv         Search "vuelos" in Spanish and export in html and csv
-    ▶️  gquestions.py query "vuelos" es depth 1       Search "vuelos" in Spanish with a depth of 1 and export in html
-    ▶️  gquestions.py -h                              Print this message
-   
-👀 Options:
-    -h, --help
-'''
-
-import os
 import re
-import sys
-import json
 import time
 import datetime
 import platform
-from docopt import docopt
 from tqdm import tqdm 
 from time import sleep
 import pandas as pd
 from pandas.io.json import json_normalize
 import logging
-from jinja2 import Environment, FileSystemLoader
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 
 ''' 
 Visualisierung eines Ladebalkens
@@ -60,6 +37,8 @@ def initBrowser(headless=False):
     else:
         chrome_path = "driver/chromedriver"
     chrome_options = Options()
+   
+    chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-features=NetworkService")
     if headless:
         chrome_options.add_argument('headless')

@@ -7,25 +7,10 @@ Created on Tue Nov 19 10:55:09 2019
 def scrape(query, lang):
     import ipywidgets as widgets
     import os
-    import re
-    import sys
     import json
-    import time
-    import datetime
-    import platform
-    from docopt import docopt
-    from tqdm import tqdm 
-    from time import sleep
-    import pandas as pd
-    from pandas.io.json import json_normalize
-    import logging
     from jinja2 import Environment, FileSystemLoader
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-    from selenium.webdriver.common.keys import Keys
-    from selenium.webdriver.common.action_chains import ActionChains
-    from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
-    from gquestions import initBrowser, crawlQuestions, sleepBar, tabNTimes, newSearch, prettyOutputName
+    from gquestions import initBrowser, crawlQuestions, newSearch, prettyOutputName
+    
     widgets.IntSlider()
     browser = initBrowser()
     start_paa = newSearch(browser,query, lang)
