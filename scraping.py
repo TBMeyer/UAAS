@@ -28,10 +28,11 @@ def scrape(query, lang):
             env = Environment( loader = FileSystemLoader(templates_dir) )
             template = env.get_template('index.html')
             filename = os.path.join(root, 'html', prettyOutputName(query = query))
+            filepath = os.path.join('..','files','html', prettyOutputName(query = query))
             with open(filename, 'w') as fh:
                 fh.write(template.render(
                         treeData = treeData,
                         ))
                 
-            display(HTML('<form method="get" action="'+ filename +'"><br><button class="btn btn-primary" type="submit">Download HTML!</button></form>'))
+            display(HTML('<form method="get" action="'+ filepath +'"><br><button class="btn btn-primary" type="submit">Download HTML!</button></form>'))
     browser.close()
