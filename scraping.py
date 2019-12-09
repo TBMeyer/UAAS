@@ -9,8 +9,8 @@ def scrape(query, lang):
     import os
     import json
     from jinja2 import Environment, FileSystemLoader
-    from gquestions import initBrowser, crawlQuestions, newSearch, prettyOutputName
-    
+    from gquestions import initBrowser, crawlQuestions, newSearch, prettyOutputName, flatten_csv
+    from IPython.core.display import display, HTML
     widgets.IntSlider()
     browser = initBrowser()
     start_paa = newSearch(browser,query, lang)
@@ -32,4 +32,6 @@ def scrape(query, lang):
                 fh.write(template.render(
                         treeData = treeData,
                         ))
+                
+            display(HTML('<form method="get" action="'+ filename +'"><br><button class="btn btn-primary" type="submit">Download HTML!</button></form>'))
     browser.close()

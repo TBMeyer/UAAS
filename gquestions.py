@@ -184,7 +184,11 @@ def crawlQuestions(lang,query,browser,start_paa, paa_list, initialSet):
                                 j['children'].append({"name": value.text,"parent": parent})
                                 
                             initialSet = getCurrentSERP(browser, browser)
-
+   
+    _path = 'csv/'+prettyOutputName('csv')
+    flatten_csv(paa_list, depth, _path)
+    from IPython.core.display import display, HTML
+    display(HTML('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><form method="get" action="'+ _path +'"><br><button class="btn btn-primary" type="submit">Download CSV!</button></form>'))
 """
 Get the current Result Page.
 Returns: 
@@ -273,12 +277,3 @@ def flatten_csv(data,depth,prettyname):
             merge.to_csv(prettyname,sep=';',encoding='utf-8')
     except Exception as e:
         logging.warning(f"{e}")
-
-
-
-    if args['--csv']:
-        if paa_list[0]['children']:
-            _path = 'csv/'+prettyOutputName('csv')
-            flatten_csv(paa_list, depth, _path)
-
-    browser.close()
