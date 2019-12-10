@@ -34,5 +34,5 @@ def scrape(query, lang):
                         treeData = treeData,
                         ))
                 
-            display(HTML('<form method="get" action="'+ filepath +'"><br><button class="btn btn-primary" type="submit">Download HTML!</button></form>'))
+            display(HTML('<a href="../../tree/html/'+prettyname+'">html herunterladen</a>'))
     browser.close()
