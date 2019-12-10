@@ -27,8 +27,8 @@ def scrape(query, lang):
             templates_dir = os.path.join(root, 'templates')
             env = Environment( loader = FileSystemLoader(templates_dir) )
             template = env.get_template('index.html')
-            filename = os.path.join(root, 'html', prettyOutputName(query = query))
-            filepath = os.path.join('home/jovyan/html', prettyOutputName(query = query))
+            prettyname = prettyOutputName(query = query)
+            filename = os.path.join(root, 'html', prettyname)
             with open(filename, 'w') as fh:
                 fh.write(template.render(
                         treeData = treeData,
