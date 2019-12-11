@@ -13,7 +13,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 ''' 
-Visualisierung eines Ladebalkens
+Visualize loading bar
 '''
 def sleepBar(seconds):
     for i in tqdm(range(seconds)):
@@ -45,6 +45,7 @@ def initBrowser(headless=False):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
     return webdriver.Chrome(options=chrome_options,executable_path=chrome_path)
+
 """
 Search on Google and returns the list of PAA questions in SERP.
 """
@@ -76,6 +77,7 @@ def newSearch(browser,query,lang):
     paa = browser.find_elements_by_xpath("//span/following-sibling::div[contains(@class,'match-mod-horizontal-padding')]")
     hideGBar()
     return paa
+
 """
 Helper function that scroll into view the PAA questions element.
 """
@@ -92,6 +94,7 @@ def scrollToFeedback(lang, browser):
     browser.execute_script("arguments[0].scrollIntoView();", el)
     actions.send_keys(Keys.PAGE_UP).perform()
     sleepBar(1)
+    
 """
 Accessibility helper: press TAB N times (default 2)
 """
@@ -189,6 +192,7 @@ def crawlQuestions(lang,query,browser,start_paa, paa_list, initialSet):
     flatten_csv(paa_list, depth, _path)
     from IPython.core.display import display, HTML
     display(HTML('<a href="../../tree/'+_path+'">csv herunterladen</a>'))
+    
 """
 Get the current Result Page.
 Returns: 

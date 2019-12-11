@@ -4,6 +4,7 @@ Created on Tue Nov 19 10:55:09 2019
 
 @author: DavidMeyer
 """
+#Function to initialize gquestion through jupyter
 def scrape(query, lang):
     import ipywidgets as widgets
     import os
@@ -11,6 +12,7 @@ def scrape(query, lang):
     from jinja2 import Environment, FileSystemLoader
     from gquestions import initBrowser, crawlQuestions, newSearch, prettyOutputName, flatten_csv
     from IPython.core.display import display, HTML
+    
     widgets.IntSlider()
     browser = initBrowser()
     start_paa = newSearch(browser,query, lang)
@@ -32,7 +34,6 @@ def scrape(query, lang):
             with open(filename, 'w') as fh:
                 fh.write(template.render(
                         treeData = treeData,
-                        ))
-                
+                        )) 
             display(HTML('<a href="../../tree/html/'+prettyname+'">html herunterladen</a>'))
     browser.close()
