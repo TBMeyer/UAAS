@@ -1,1 +1,1 @@
-chromium-browser=724978
+chromium-browser
